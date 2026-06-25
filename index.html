@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap">
   <style>
-    html, body { margin: 0; padding: 0; background: #f3f7ee; overflow-x: hidden; max-width: 100%; }
+    html, body { margin: 0; padding: 0; background: #f3f7ee; }
     html { scroll-behavior: smooth; }
 
     /* ---- Responsive (mobile / tablet) ---- */
@@ -25,7 +25,7 @@
       [data-r="docbtns"] { margin-top: 26px !important; justify-content: center !important; }
       [data-r="docphone"] { margin-top: 16px !important; }
       [data-r="docphoneinner"] { margin-bottom: -112px !important; }
-      [data-r="herophones"] { transform: none !important; zoom: 0.82 !important; height: 560px !important; margin: 8px auto 0 !important; max-width: 100% !important; }
+      [data-r="herophones"] { transform: scale(0.7) !important; transform-origin: bottom center !important; height: 400px !important; margin: 8px auto -110px !important; max-width: 100% !important; }
       [data-r="root"] h1 { font-size: 32px !important; }
       [data-r="root"] h2 { font-size: 27px !important; }
       [data-r="root"] section { padding-left: 20px !important; padding-right: 20px !important; }
@@ -36,19 +36,13 @@
       [data-r="vhead"] { margin-top: 18px !important; }
       #download > div, #apply > div { padding: 48px 24px !important; }
       [data-r="ovgrid"] { grid-template-columns: 1fr !important; gap: 30px !important; padding: 40px 26px !important; }
-      /* Language dropdown: keep it centred under the button and on-screen on mobile */
-      .cf-lang-menu { left: 50% !important; right: auto !important; transform: translateX(-50%) !important; min-width: 210px !important; max-width: calc(100vw - 24px) !important; max-height: calc(100vh - 150px) !important; }
-      /* Keep the page from scrolling sideways without clipping the phone mock-ups themselves */
-      [data-screen-label="Hero"], [data-r="root"] section { overflow-x: clip !important; }
-      /* Footer: stack the 5-column card into one centred column so nothing is clipped */
-      [data-r="root"] footer div[style*="repeat(5"] { grid-template-columns: 1fr !important; gap: 24px !important; padding: 34px 22px !important; text-align: center !important; }
-      [data-r="root"] footer div[style*="repeat(5"] > div { width: 100% !important; align-items: center !important; justify-content: center !important; }
-      [data-r="root"] footer div[style*="repeat(5"] p { width: 100% !important; max-width: 340px !important; margin-left: auto !important; margin-right: auto !important; text-align: center !important; }
-      [data-r="root"] footer div[style*="space-between"] { flex-direction: column !important; align-items: center !important; justify-content: center !important; text-align: center !important; gap: 8px !important; flex-wrap: nowrap !important; }
-      [data-r="root"] footer div[style*="space-between"] > span { display: block !important; width: 100% !important; white-space: normal !important; }
+      [data-r="langmenu"] { right: auto !important; left: 0 !important; }
+      [data-r="footergrid"] { grid-template-columns: 1fr !important; gap: 26px !important; padding: 34px 26px !important; justify-items: start !important; }
+      [data-r="footergrid"] > div:first-child { justify-content: flex-start !important; }
+      [data-r="footergrid"] > div:nth-child(2) { padding-bottom: 6px !important; border-bottom: 1px solid rgba(120,140,115,.16) !important; width: 100% !important; }
     }
     @media (max-width: 480px) {
-      [data-r="herophones"] { transform: none !important; zoom: 0.64 !important; margin: 8px auto 0 !important; }
+      [data-r="herophones"] { transform: scale(0.56) !important; height: 330px !important; margin: 8px auto -92px !important; }
       [data-r="docphoneinner"] { width: 300px !important; margin-bottom: -96px !important; }
       [data-r="root"] h1 { font-size: 28px !important; }
       [data-r="root"] h2 { font-size: 24px !important; }
@@ -80,7 +74,7 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
           </button>
           <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-            <div class="cf-lang-menu" style="position: absolute; top: calc(100% + 10px); right: 0; min-width: 215px; max-height: calc(100vh - 130px); overflow-y: auto; background: #ffffff; border-radius: 20px; box-shadow: 0 24px 50px -12px rgba(15,35,15,.45); padding: 8px; display: flex; flex-direction: column; z-index: 100;">
+            <div data-r="langmenu" style="position: absolute; top: calc(100% + 10px); right: 0; min-width: 215px; background: #ffffff; border-radius: 20px; box-shadow: 0 24px 50px -12px rgba(15,35,15,.45); padding: 8px; display: flex; flex-direction: column; z-index: 100;">
               <sc-for list="{{ langs }}" as="l" hint-placeholder-count="7">
                 <button onClick="{{ l.pick }}" style="display: flex; align-items: center; gap: 11px; width: 100%; border: none; background: none; cursor: pointer; font-family: inherit; text-align: left; padding: 9px 10px; border-radius: 13px;" style-hover="background: #eaf6e1;">
                   <span style="width: 34px; height: 34px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #3a7a3e; background: linear-gradient(180deg, #eaf7e1, #dcefce); box-shadow: inset 0 0 0 1px rgba(86,184,63,.3);">{{ l.glyph }}</span>
@@ -810,7 +804,7 @@
   <!-- ============ FOOTER ============ -->
   <footer data-screen-label="Footer" style="border-top: 1px solid rgba(120,140,115,.18); padding: 48px 32px 40px;">
     <div style="max-width: 1140px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px;">
-      <div style="display: grid; grid-template-columns: repeat(5, 1fr); align-items: start; gap: 32px; background: linear-gradient(180deg, rgba(70,154,63,.07), rgba(70,154,63,.025)); border: 1px solid rgba(120,140,115,.16); border-radius: 26px; padding: 38px 40px;">
+      <div data-r="footergrid" style="display: grid; grid-template-columns: repeat(5, 1fr); align-items: start; gap: 32px; background: linear-gradient(180deg, rgba(70,154,63,.07), rgba(70,154,63,.025)); border: 1px solid rgba(120,140,115,.16); border-radius: 26px; padding: 38px 40px;">
         <div style="display: flex; align-items: center; justify-content: center;">
           <img src="assets/cf-lockup-green.png" alt="Crohn Friends" style="height: 100px; width: auto; display: block;">
         </div>
