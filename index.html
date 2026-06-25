@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap">
   <style>
-    html, body { margin: 0; padding: 0; background: #f3f7ee; }
+    html, body { margin: 0; padding: 0; background: #f3f7ee; overflow-x: hidden; max-width: 100%; }
     html { scroll-behavior: smooth; }
 
     /* ---- Responsive (mobile / tablet) ---- */
@@ -38,6 +38,15 @@
       [data-r="ovgrid"] { grid-template-columns: 1fr !important; gap: 30px !important; padding: 40px 26px !important; }
       /* Language dropdown: keep it centred under the button and on-screen on mobile */
       .cf-lang-menu { left: 50% !important; right: auto !important; transform: translateX(-50%) !important; min-width: 210px !important; max-width: calc(100vw - 24px) !important; max-height: calc(100vh - 150px) !important; }
+      /* Phone mock-ups force a ~510px min-width that zooms/clips the whole page on mobile */
+      [data-r="herophones"], [data-r="docphone"], [data-r="docphoneinner"] { overflow: hidden !important; }
+      [data-screen-label="Hero"], [data-r="root"] section { overflow-x: clip !important; }
+      /* Footer: stack the 5-column card into one centred column so nothing is clipped */
+      [data-r="root"] footer div[style*="repeat(5"] { grid-template-columns: 1fr !important; gap: 24px !important; padding: 34px 22px !important; text-align: center !important; }
+      [data-r="root"] footer div[style*="repeat(5"] > div { width: 100% !important; align-items: center !important; justify-content: center !important; }
+      [data-r="root"] footer div[style*="repeat(5"] p { width: 100% !important; max-width: 340px !important; margin-left: auto !important; margin-right: auto !important; text-align: center !important; }
+      [data-r="root"] footer div[style*="space-between"] { flex-direction: column !important; align-items: center !important; justify-content: center !important; text-align: center !important; gap: 8px !important; flex-wrap: nowrap !important; }
+      [data-r="root"] footer div[style*="space-between"] > span { display: block !important; width: 100% !important; white-space: normal !important; }
     }
     @media (max-width: 480px) {
       [data-r="herophones"] { transform: scale(0.56) !important; height: 330px !important; margin: 8px auto -92px !important; }
