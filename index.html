@@ -38,8 +38,7 @@
       [data-r="ovgrid"] { grid-template-columns: 1fr !important; gap: 30px !important; padding: 40px 26px !important; }
       /* Language dropdown: keep it centred under the button and on-screen on mobile */
       .cf-lang-menu { left: 50% !important; right: auto !important; transform: translateX(-50%) !important; min-width: 210px !important; max-width: calc(100vw - 24px) !important; max-height: calc(100vh - 150px) !important; }
-      /* Phone mock-ups force a ~510px min-width that zooms/clips the whole page on mobile */
-      [data-r="herophones"], [data-r="docphone"], [data-r="docphoneinner"] { overflow: hidden !important; }
+      /* Keep the page from scrolling sideways without clipping the phone mock-ups themselves */
       [data-screen-label="Hero"], [data-r="root"] section { overflow-x: clip !important; }
       /* Footer: stack the 5-column card into one centred column so nothing is clipped */
       [data-r="root"] footer div[style*="repeat(5"] { grid-template-columns: 1fr !important; gap: 24px !important; padding: 34px 22px !important; text-align: center !important; }
